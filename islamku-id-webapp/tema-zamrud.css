@@ -1,0 +1,62 @@
+/* Tema Zamrud & Emas — dimuat SETELAH styles.css. Hapus <link>-nya di index.html untuk kembali ke tampilan lama. */
+:root {
+  --ink: #12261f; --muted: #66786f; --line: #dfe8e0;
+  --paper: #f4f7f2; --card: #ffffff;
+  --green: #0f7a5c; --deep: #0a3d30; --lime: #d8b45a; --sand: #f6efdc;
+  --gold: #c9a24a; --gold-soft: #e8d59a;
+  --shadow: 0 14px 38px rgba(10, 61, 48, 0.10);
+}
+:root[data-theme="dark"] {
+  --ink: #e9f1ec; --muted: #9db0a6; --line: #22403a;
+  --paper: #07171a; --card: #0d2a27;
+  --green: #2bb38a; --deep: #0a3d30; --lime: #e0bd63; --sand: #14302b;
+  --gold: #e0bd63; --gold-soft: #b8963f;
+  --shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 90% 4%, rgba(201, 162, 74, 0.18), transparent 24rem),
+    radial-gradient(circle at 4% 96%, rgba(15, 122, 92, 0.12), transparent 22rem),
+    var(--paper);
+}
+.sidebar, .topbar { background: color-mix(in srgb, var(--card) 82%, transparent); border-color: var(--line); }
+.account-menu, .artikel-card, .auth-dialog, .chip-filter, .city-results, .date-control,
+.dzikir-tab, .ghost-button, .location-card, .streak-card, .quote-card, .ayah-card,
+.qibla-card, .menu-action.secondary, .mini-button, .panel-card, .prayer-list,
+.reading-check, .search-inner, .status-card, .surat-row, .contact-form select,
+.contact-form textarea, .notif-dialog select, .profile-button:hover,
+.reading-mode-toggle {
+  background: var(--card); color: var(--ink); border-color: var(--line);
+}
+.nav-link { color: var(--muted); }
+.nav-link.active {
+  color: var(--deep);
+  background: linear-gradient(90deg, rgba(201, 162, 74, 0.22), rgba(201, 162, 74, 0.04));
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+:root[data-theme="dark"] .nav-link.active { color: var(--gold); }
+.brand-mark { background: linear-gradient(135deg, var(--gold), var(--gold-soft)); color: var(--deep); }
+.prayer-hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(232, 213, 154, 0.28), transparent 15rem),
+    linear-gradient(135deg, #0a3d30 0%, #0f6b52 100%);
+  border: 1px solid rgba(232, 213, 154, 0.35);
+  box-shadow: 0 20px 48px rgba(10, 61, 48, 0.28);
+}
+.hero-label, .hero-countdown strong { color: var(--gold-soft); }
+.welcome-row h1 span, .card-heading a { color: var(--gold); }
+.panel-card, .artikel-card, .surat-row, .status-card {
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.panel-card:hover, .artikel-card:hover, .surat-row:hover {
+  transform: translateY(-2px); border-color: var(--gold-soft); box-shadow: var(--shadow);
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.theme-toggle {
+  width: 42px; height: 42px; border-radius: 12px; cursor: pointer; font-size: 18px;
+  border: 1px solid var(--line); background: var(--card); color: var(--gold);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.theme-toggle:hover { transform: rotate(12deg); border-color: var(--gold); }

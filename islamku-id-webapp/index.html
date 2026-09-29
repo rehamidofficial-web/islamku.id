@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f8f3" />
+    <meta
+      name="description"
+      content="Islamku.id, teman ibadah untuk jadwal shalat, Al-Qur'an, dzikir, dan artikel Islami."
+    />
+    <link rel="manifest" href="manifest.json" />
+    <title>Islamku.id — Teman Ibadahmu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="tema-zamrud.css" />
+    <script src="theme.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navigasi utama">
+        <a class="brand" href="#beranda" aria-label="Islamku.id beranda">
+          <span class="brand-mark">إ</span>
+          <span>islamku<span class="brand-dot">.</span>id</span>
+        </a>
+        <nav class="side-nav">
+          <a class="nav-link active" href="#beranda" data-section="beranda"
+            ><span class="nav-icon">⌂</span><span>Beranda</span></a
+          >
+          <a class="nav-link" href="#jadwal" data-section="jadwal"
+            ><span class="nav-icon">◒</span><span>Jadwal Shalat</span></a
+          >
+          <a class="nav-link" href="#kiblat" data-section="kiblat"
+            ><span class="nav-icon">✦</span><span>Kompas Kiblat</span></a
+          >
+          <a class="nav-link" href="#alquran" data-section="alquran"
+            ><span class="nav-icon">▤</span><span>Al-Qur'an</span></a
+          >
+          <a class="nav-link" href="#dzikir" data-section="dzikir"
+            ><span class="nav-icon">◈</span><span>Dzikir & Wirid</span></a
+          >
+          <a class="nav-link" href="#ratib" data-section="ratib"
+            ><span class="nav-icon">◇</span><span>Ratib</span></a
+          >
+          <a class="nav-link" href="#tahlil" data-section="tahlil"
+            ><span class="nav-icon">◫</span><span>Tahlil</span></a
+          >
+          <a class="nav-link" href="#manaqib" data-section="manaqib"
+            ><span class="nav-icon">❋</span><span>Manaqib</span></a
+          >
+          <a class="nav-link" href="#artikel" data-section="artikel"
+            ><span class="nav-icon">▥</span><span>Artikel</span></a
+          >
+          <a class="nav-link" href="#kontak" data-section="kontak"
+            ><span class="nav-icon">✉</span
+            ><span>Kontak & Kirim Cerita</span></a
+          >
+          <a class="nav-link" href="#pengaturan" data-section="pengaturan"
+            ><span class="nav-icon">✱</span><span>Pengaturan</span></a
+          >
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="help-card">
+            <span class="help-spark">✦</span>
+            <strong>Butuh ketenangan?</strong>
+            <p>Baca dzikir pagi & petang hari ini.</p>
+            <a href="#dzikir" data-goto="dzikir"
+              >Jelajahi dzikir <span>↗</span></a
+            >
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Buka navigasi"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+          <div class="mobile-brand">
+            <span class="brand-mark">إ</span
+            ><span>islamku<span class="brand-dot">.</span>id</span>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" id="searchButton" aria-label="Cari">
+              <span>⌕</span>
+            </button>
+            <button
+              class="icon-button notification-button"
+              id="notificationButton"
+              aria-label="Notifikasi"
+            >
+              <span>♧</span><i></i>
+            </button>
+            <button
+              class="profile-button"
+              id="profileButton"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span class="avatar" id="profileAvatar">AR</span
+              ><span class="profile-copy"
+                ><strong id="profileName">Ahmad R.</strong
+                ><small id="profileStatus"
+                  >Masuk untuk menyimpan progres</small
+                ></span
+              ><span class="chevron">⌄</span>
+            </button>
+            <div class="account-menu is-hidden" id="accountMenu">
+              <p class="account-menu-label">AKUN SAYA</p>
+              <strong id="accountMenuName">Belum masuk</strong>
+              <small id="accountMenuEmail"
+                >Bookmark tersimpan di perangkat ini</small
+              >
+              <button class="menu-action secondary" id="accountMenuSettings">
+                Pengaturan preferensi
+              </button>
+              <button class="menu-action" id="accountMenuButton">
+                Masuk / Daftar
+              </button>
+            </div>
+          </div>
+        </header>
+        <nav
+          class="mobile-nav-panel is-hidden"
+          id="mobileNavPanel"
+          aria-label="Navigasi mobile"
+        >
+          <a href="#beranda" data-mobile-section="beranda">⌂ Beranda</a>
+          <a href="#jadwal" data-mobile-section="jadwal">◒ Jadwal Shalat</a>
+          <a href="#kiblat" data-mobile-section="kiblat">✦ Kompas Kiblat</a>
+          <a href="#alquran" data-mobile-section="alquran">▤ Al-Qur'an</a>
+          <a href="#dzikir" data-mobile-section="dzikir">◈ Dzikir & Wirid</a>
+          <a href="#ratib" data-mobile-section="ratib">◇ Ratib</a>
+          <a href="#tahlil" data-mobile-section="tahlil">◫ Tahlil</a>
+          <a href="#manaqib" data-mobile-section="manaqib">❋ Manaqib</a>
+          <a href="#artikel" data-mobile-section="artikel">▥ Artikel</a>
+          <a href="#kontak" data-mobile-section="kontak">✉ Kontak & Cerita</a>
+          <a href="#pengaturan" data-mobile-section="pengaturan"
+            >✱ Pengaturan</a
+          >
+        </nav>
+
+        <!-- ======================= BERANDA ======================= -->
+        <section class="page-section is-active" data-page="beranda">
+          <div class="page-wrap">
+            <section class="welcome-row">
+              <div>
+                <p class="eyebrow" id="hijriDate">MEMUAT TANGGAL…</p>
+                <h1>
+                  Assalamu'alaikum, <span id="welcomeName">Akun tamu</span>
+                  <span>✦</span>
+                </h1>
+                <p class="muted">
+                  Semoga harimu dipenuhi berkah dan ketenangan.
+                </p>
+              </div>
+              <button class="date-control" id="dateControl">
+                <span class="calendar-icon">▣</span>
+                <span id="dateControlLabel">Lihat jadwal lengkap</span>
+                <span>⌄</span>
+              </button>
+            </section>
+
+            <section
+              class="notification-permission-card is-hidden"
+              id="notificationPermissionCard"
+              aria-live="polite"
+            >
+              <div class="notification-permission-head">
+                <div>
+                  <p class="eyebrow">PENGINGAT IBADAH</p>
+                  <h2 id="notificationPermissionTitle">Aktifkan notifikasi</h2>
+                </div>
+                <span class="notification-permission-icon">♧</span>
+              </div>
+              <p id="notificationPermissionCopy">
+                Izinkan notifikasi agar Anda mendapat pengingat shalat dan
+                dzikir tepat waktu.
+              </p>
+              <p
+                class="notification-permission-status"
+                id="notificationPermissionStatus"
+                data-state="default"
+              >
+                Status izin: belum diizinkan
+              </p>
+              <p
+                class="notification-permission-next"
+                id="notificationNextReminder"
+              >
+                Pengingat berikutnya: —
+              </p>
+              <div class="notification-permission-actions">
+                <button
+                  class="primary-button"
+                  id="enableNotifications"
+                  type="button"
+                >
+                  Aktifkan
+                </button>
+                <button
+                  class="ghost-button"
+                  id="dismissNotifications"
+                  type="button"
+                >
+                  Nanti
+                </button>
+                <button
+                  class="ghost-button"
+                  id="cardNotificationSettings"
+                  type="button"
+                >
+                  Atur pengingat
+                </button>
+              </div>
+            </section>
+
+            <section class="hero-grid">
+              <article class="prayer-hero">
+                <div class="hero-content">
+                  <div class="hero-label">
+                    <span class="sun-icon">☼</span> Shalat berikutnya
+                  </div>
+                  <h2 id="heroPrayerName">—</h2>
+                  <div class="hero-time" id="heroPrayerTime">
+                    --:-- <span>WIB</span>
+                  </div>
+                  <p class="hero-countdown">
+                    Dalam <strong id="countdown">00:00:00</strong>
+                  </p>
+                  <button class="light-button" id="reminderButton">
+                    <span>♧</span> Ingatkan saya
+                  </button>
+                </div>
+                <div class="hero-sun" aria-hidden="true"><span></span></div>
+                <div class="hero-wave"></div>
+              </article>
+              <article class="location-card">
+                <div class="card-heading">
+                  <span>Lokasi saat ini</span
+                  ><button
+                    class="more-button"
+                    aria-label="Opsi lokasi"
+                    data-goto="jadwal"
+                  >
+                    •••
+                  </button>
+                </div>
+                <div class="location-name">
+                  <span class="pin">⌖</span
+                  ><strong data-location-name>Mengambil lokasi…</strong>
+                </div>
+                <p data-location-full>—</p>
+                <div class="location-footer">
+                  <span class="status-dot"></span> Waktu shalat menyesuaikan
+                  lokasi
+                </div>
+              </article>
+            </section>
+
+            <section class="content-grid">
+              <div class="main-column">
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">JADWAL HARI INI</p>
+                    <h2>Waktu shalat</h2>
+                  </div>
+                  <a href="#jadwal" data-goto="jadwal"
+                    >Lihat semua <span>↗</span></a
+                  >
+                </div>
+                <div class="prayer-list" id="prayerList">
+                  <p class="muted" style="padding: 18px">
+                    Memuat jadwal shalat…
+                  </p>
+                </div>
+              </div>
+              <div class="side-column">
+                <div class="section-heading compact">
+                  <div>
+                    <p class="eyebrow">PENGINGAT HARI INI</p>
+                    <h2>Amalanmu</h2>
+                  </div>
+                  <a href="#dzikir" data-goto="dzikir" aria-label="Buka amalan"
+                    >↗</a
+                  >
+                </div>
+                <article class="streak-card">
+                  <div class="streak-top">
+                    <span class="streak-icon">✦</span>
+                    <div>
+                      <strong id="streakDays">0 hari</strong
+                      ><span>konsisten beribadah</span>
+                    </div>
+                    <span class="streak-arrow">↗</span>
+                  </div>
+                  <div
+                    class="week-dots"
+                    id="weekDots"
+                    aria-label="Ringkasan hari dalam minggu"
+                  ></div>
+                </article>
+                <article class="status-card" id="prayerStatusCard">
+                  <div class="status-top">
+                    <span class="status-icon">◌</span>
+                    <div>
+                      <strong>Status shalat</strong>
+                      <span>Hari ini</span>
+                    </div>
+                  </div>
+                  <div class="status-main">
+                    <div
+                      class="status-ring"
+                      aria-label="Persentase shalat selesai"
+                    >
+                      <span id="prayerStatusPercent">0%</span>
+                    </div>
+                    <div class="status-copy">
+                      <p id="prayerStatusText">Memuat status…</p>
+                      <small id="prayerStatusMeta">0/5 shalat selesai</small>
+                    </div>
+                  </div>
+                </article>
+                <article class="quote-card">
+                  <span class="quote-mark">"</span>
+                  <p>
+                    Sesungguhnya dengan mengingat Allah, hati menjadi tenteram.
+                  </p>
+                  <small>QS. Ar-Ra'd: 28</small>
+                </article>
+              </div>
+            </section>
+
+            <section class="bottom-grid">
+              <article class="ayah-card" id="ayahCard">
+                <div class="ayah-title">
+                  <span class="quran-icon">▤</span>
+                  <div>
+                    <p class="eyebrow">AYAT HARI INI</p>
+                    <h2>Untuk direnungkan</h2>
+                  </div>
+                  <button class="round-arrow" aria-label="Buka Al-Qur'an">
+                    ↗
+                  </button>
+                </div>
+                <p class="arabic">Memuat ayat…</p>
+                <p class="translation"></p>
+                <small></small>
+              </article>
+              <article class="qibla-card" id="kompas">
+                <div class="card-heading">
+                  <div>
+                    <p class="eyebrow">ARAH KIBLAT</p>
+                    <h2>Kompas kiblat</h2>
+                  </div>
+                  <span class="qibla-degree" data-qibla-degree>—</span>
+                </div>
+                <div class="compass">
+                  <div class="compass-ring">
+                    <span class="north">U</span><span class="east">T</span
+                    ><span class="south">S</span><span class="west">B</span>
+                    <div class="needle"></div>
+                    <div class="kaaba">◆</div>
+                  </div>
+                </div>
+                <p class="compass-note">
+                  <span class="status-dot"></span>
+                  <span data-qibla-note
+                    >Atur lokasi untuk melihat arah kiblat</span
+                  >
+                </p>
+              </article>
+            </section>
+            <footer>
+              islamku.id <span>•</span> Teman kecil untuk ibadah yang lebih
+              bermakna.
+            </footer>
+          </div>
+        </section>
+
+        <!-- ======================= JADWAL SHALAT ======================= -->
+        <section class="page-section" data-page="jadwal">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Jadwal Waktu Shalat</h1>
+              <p>
+                Waktu shalat dihitung berdasarkan lokasi Anda, mengikuti metode
+                Kementerian Agama RI.
+              </p>
+            </div>
+            <div class="panel-card">
+              <div class="location-controls">
+                <button class="ghost-button" id="jadwalUseGps">
+                  ⌖ Gunakan lokasi GPS
+                </button>
+                <div class="city-search-wrap">
+                  <input
+                    type="text"
+                    id="jadwalCitySearch"
+                    placeholder="Atau cari nama kota/kabupaten…"
+                  />
+                  <ul class="city-results" id="jadwalCityResults"></ul>
+                </div>
+              </div>
+              <div class="jadwal-meta-row">
+                <span>Lokasi: <strong data-location-full>—</strong></span>
+                <span>Masehi: <strong id="jadwalMasehi">—</strong></span>
+                <span>Hijriah: <strong id="jadwalHijri">—</strong></span>
+                <span>Metode: <strong id="jadwalMethod">—</strong></span>
+              </div>
+              <div class="prayer-list" id="jadwalFullList">
+                <p class="muted" style="padding: 18px">
+                  Atur lokasi untuk melihat jadwal shalat.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= KOMPAS KIBLAT ======================= -->
+        <section class="page-section" data-page="kiblat">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Kompas Arah Kiblat</h1>
+              <p>
+                Arah dihitung dari lokasi Anda menuju Ka'bah di Makkah. Aktifkan
+                sensor kompas perangkat untuk pengalaman langsung.
+              </p>
+            </div>
+            <div class="kiblat-layout">
+              <div class="panel-card kiblat-big-compass">
+                <div class="location-controls">
+                  <button class="ghost-button" id="kiblatUseGps">
+                    ⌖ Gunakan lokasi GPS
+                  </button>
+                  <button class="ghost-button" id="kiblatEnableSensor">
+                    🧭 Aktifkan kompas
+                  </button>
+                </div>
+                <div class="compass">
+                  <div class="compass-ring">
+                    <span class="north">U</span><span class="east">T</span
+                    ><span class="south">S</span><span class="west">B</span>
+                    <div class="needle"></div>
+                    <div class="kaaba">◆</div>
+                  </div>
+                </div>
+                <p class="compass-note">
+                  <span class="status-dot"></span>
+                  <span data-qibla-note
+                    >Atur lokasi untuk melihat arah kiblat</span
+                  >
+                </p>
+              </div>
+              <div class="panel-card">
+                <div class="card-heading" style="margin-bottom: 14px">
+                  <span>Sudut kiblat</span>
+                </div>
+                <p
+                  style="
+                    font-size: 34px;
+                    font-weight: 700;
+                    color: var(--deep);
+                    margin: 0 0 6px;
+                  "
+                  data-qibla-degree
+                >
+                  —
+                </p>
+                <p class="muted" style="margin: 0 0 20px">
+                  Diukur searah jarum jam dari Utara sejati.
+                </p>
+                <p
+                  class="muted"
+                  style="margin: 0; font-size: 11px; line-height: 1.7"
+                >
+                  Jika perangkat tidak mendukung sensor kompas (mis.
+                  laptop/desktop), gunakan sudut di atas sebagai acuan manual
+                  terhadap mata angin.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= AL-QUR'AN ======================= -->
+        <section class="page-section" data-page="alquran">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Al-Qur'an Digital</h1>
+              <p>
+                Teks, terjemahan, tafsir, dan audio murottal disediakan oleh API
+                EQuran.id.
+              </p>
+            </div>
+            <div id="quranListView">
+              <div class="last-read-banner is-hidden" id="quranLastRead">
+                <span>📖 Lanjutkan membaca</span><span>—</span
+                ><small id="quranLastReadHint"></small>
+              </div>
+              <div class="surat-search-wrap">
+                <input
+                  type="text"
+                  id="quranSearch"
+                  placeholder="Cari nama surat atau arti…"
+                />
+              </div>
+              <div class="surat-list" id="suratList"></div>
+            </div>
+            <div id="quranReaderView" class="is-hidden">
+              <button
+                class="ghost-button"
+                id="quranBackToList"
+                style="margin-bottom: 18px"
+              >
+                ← Daftar surat
+              </button>
+              <div class="panel-card">
+                <div class="quran-reader-head">
+                  <div>
+                    <h2 id="suratTitle">—</h2>
+                    <p id="suratMeta">—</p>
+                  </div>
+                </div>
+                <audio id="suratFullAudio" controls class="is-hidden"></audio>
+                <div id="suratAyatList"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= KONTAK ======================= -->
+        <section class="page-section" data-page="kontak">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Kirim Saran & Cerita</h1>
+              <p>
+                Sampaikan pertanyaan, masukan, atau kisah inspiratif untuk
+                dipertimbangkan menjadi artikel Islami.
+              </p>
+            </div>
+            <div class="contact-layout">
+              <div class="panel-card contact-intro">
+                <span class="contact-icon">✦</span>
+                <h2>Suaramu berarti</h2>
+                <p>
+                  Kami membaca setiap pesan dengan baik. Cerita yang dikirim
+                  akan ditinjau terlebih dahulu sebelum dimuat sebagai artikel.
+                </p>
+                <ul>
+                  <li>Pertanyaan seputar fitur atau penggunaan aplikasi</li>
+                  <li>Saran untuk pengembangan Islamku.id</li>
+                  <li>Kisah inspiratif dan pengalaman ibadah</li>
+                </ul>
+              </div>
+              <form class="panel-card contact-form" id="contactForm">
+                <label class="auth-field"
+                  >Jenis pesan
+                  <select id="contactType" required>
+                    <option value="saran">Saran</option>
+                    <option value="pertanyaan">Pertanyaan</option>
+                    <option value="kisah">Kisah untuk artikel</option>
+                  </select>
+                </label>
+                <label class="auth-field"
+                  >Nama
+                  <input
+                    id="contactName"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Nama kamu"
+                    required
+                  />
+                </label>
+                <label class="auth-field"
+                  >Email untuk balasan
+                  <input
+                    id="contactEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="nama@email.com"
+                    required
+                  />
+                </label>
+                <label class="auth-field"
+                  >Judul pesan
+                  <input
+                    id="contactSubject"
+                    type="text"
+                    placeholder="Ringkasan pesan"
+                    maxlength="150"
+                    required
+                  />
+                </label>
+                <label class="auth-field"
+                  >Pesan
+                  <textarea
+                    id="contactMessage"
+                    rows="7"
+                    placeholder="Tulis pesan atau kisahmu di sini..."
+                    maxlength="5000"
+                    required
+                  ></textarea>
+                </label>
+                <p class="auth-error" id="contactError" role="alert"></p>
+                <button class="primary-button" type="submit" id="contactSubmit">
+                  Kirim pesan
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= DZIKIR & WIRID ======================= -->
+        <section class="page-section" data-page="dzikir" id="dzikir">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Dzikir & Wirid</h1>
+              <p id="dzikirSubtitle">
+                Ketuk lingkaran hitungan setiap kali membaca satu kali dzikir.
+              </p>
+            </div>
+            <div class="dzikir-tabs" id="dzikirTabs"></div>
+            <div class="panel-card" id="dzikirContent"></div>
+          </div>
+        </section>
+
+        <!-- ======================= RATIB ======================= -->
+        <section class="page-section" data-page="ratib" id="ratib">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1 id="ratibTitle">Ratib</h1>
+              <p id="ratibSubtitle">—</p>
+            </div>
+            <div class="dzikir-tabs" id="ratibTabs"></div>
+            <div class="panel-card" id="ratibContent"></div>
+            <p class="content-note" id="ratibNote"></p>
+          </div>
+        </section>
+
+        <!-- ======================= TAHLIL ======================= -->
+        <section class="page-section" data-page="tahlil" id="tahlil">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Bacaan Tahlil</h1>
+              <p>
+                Susunan umum tahlil & doa arwah — cocok dibaca berjamaah maupun
+                sendiri.
+              </p>
+            </div>
+            <button class="reading-mode-toggle" type="button">
+              Perbesar teks (mode majelis)
+            </button>
+            <div class="panel-card" id="tahlilContent"></div>
+            <p class="content-note" id="tahlilNote"></p>
+          </div>
+        </section>
+
+        <!-- ======================= MANAQIB ======================= -->
+        <section class="page-section" data-page="manaqib" id="manaqib">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Manaqib</h1>
+              <p>
+                Ringkasan riwayat & keteladanan untuk dibacakan pada acara
+                haul/manaqiban.
+              </p>
+            </div>
+            <button class="reading-mode-toggle" type="button">
+              Perbesar teks (mode majelis)
+            </button>
+            <div class="panel-card" id="manaqibContent"></div>
+            <p class="content-note" id="manaqibNote"></p>
+          </div>
+        </section>
+
+        <!-- ======================= ARTIKEL ISLAMI ======================= -->
+        <section class="page-section" data-page="artikel">
+          <div class="page-wrap">
+            <div id="artikelListView">
+              <div class="page-header">
+                <h1>Artikel Islami</h1>
+                <p>
+                  Bacaan ringan seputar fiqih, akhlak, sirah, dan hikmah —
+                  diperbarui secara berkala.
+                </p>
+              </div>
+              <div class="artikel-filters" id="artikelFilters"></div>
+              <div class="artikel-grid" id="artikelList"></div>
+            </div>
+            <div id="artikelDetailView" class="is-hidden">
+              <button
+                class="ghost-button"
+                id="artikelBackToList"
+                style="margin-bottom: 18px"
+              >
+                ← Semua artikel
+              </button>
+              <div class="panel-card">
+                <div class="artikel-detail-head">
+                  <span class="artikel-kategori" id="artikelDetailKategori"
+                    >—</span
+                  >
+                  <h1 id="artikelDetailJudul">—</h1>
+                  <p id="artikelDetailMeta">—</p>
+                </div>
+                <div class="artikel-body" id="artikelDetailBody"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PENGATURAN PREFERENSI ======================= -->
+        <section class="page-section" data-page="pengaturan">
+          <div class="page-wrap">
+            <div class="page-header">
+              <h1>Pengaturan preferensi</h1>
+              <p>
+                Kelola akun, pengingat ibadah, tampilan bacaan, dan metode
+                perhitungan waktu shalat. Setelah masuk, preferensi tersimpan
+                pada akunmu sehingga bisa dipakai di perangkat lain.
+              </p>
+            </div>
+
+            <div class="settings-grid">
+              <article class="panel-card settings-card">
+                <div class="settings-card-head">
+                  <h2>Akun</h2>
+                  <span
+                    class="settings-badge"
+                    id="settingsAccountBadge"
+                    data-state="guest"
+                    >Tamu</span
+                  >
+                </div>
+                <p class="settings-account-name" id="settingsAccountName">
+                  Akun tamu
+                </p>
+                <p class="muted" id="settingsAccountEmail">
+                  Masuk untuk menyinkronkan preferensi ke semua perangkat.
+                </p>
+                <p
+                  class="settings-sync"
+                  id="settingsSyncStatus"
+                  data-state="local"
+                >
+                  Tersimpan di perangkat ini
+                </p>
+                <div class="settings-actions">
+                  <button
+                    class="primary-button"
+                    id="settingsAccountButton"
+                    type="button"
+                  >
+                    Masuk / Daftar
+                  </button>
+                </div>
+              </article>
+
+              <article class="panel-card settings-card">
+                <div class="settings-card-head">
+                  <h2>Pengingat notifikasi</h2>
+                  <span
+                    class="settings-badge"
+                    id="settingsNotifBadge"
+                    data-state="default"
+                    >Belum diizinkan</span
+                  >
+                </div>
+                <p class="muted" id="settingsNotifHint">
+                  Izinkan notifikasi agar pengingat dapat dikirim.
+                </p>
+                <div class="notif-prefs">
+                  <label class="notif-toggle">
+                    <input type="checkbox" id="settingsPrefPrayer" />
+                    <span>
+                      <strong>Pengingat waktu shalat</strong>
+                      <small>Dikirim setiap masuk waktu shalat hari ini.</small>
+                    </span>
+                  </label>
+                  <label class="notif-toggle">
+                    <input type="checkbox" id="settingsPrefDzikir" />
+                    <span>
+                      <strong>Dzikir pagi &amp; petang</strong>
+                      <small>Pengingat setelah Subuh dan setelah Ashar.</small>
+                    </span>
+                  </label>
+                  <label class="notif-toggle">
+                    <input type="checkbox" id="settingsPrefArtikel" />
+                    <span>
+                      <strong>Artikel islami pilihan</strong>
+                      <small>Anjuran bacaan setiap pukul 08.00.</small>
+                    </span>
+                  </label>
+                </div>
+                <p class="settings-reminder" id="settingsNextReminder">
+                  Pengingat berikutnya: —
+                </p>
+                <div class="notif-picks">
+                  <p class="notif-picks-label">Waktu shalat yang diingatkan</p>
+                  <div class="prayer-picks" id="settingsPrayerTimes"></div>
+                </div>
+                <label class="auth-field">
+                  Pengingat jamaah setelah adzan
+                  <select id="settingsIqamah">
+                    <option value="0">Nonaktif</option>
+                    <option value="5">5 menit setelah adzan</option>
+                    <option value="10">10 menit setelah adzan</option>
+                    <option value="15">15 menit setelah adzan</option>
+                  </select>
+                </label>
+                <label class="auth-field">
+                  Ingatkan sebelum waktu shalat
+                  <select id="settingsLeadMinutes">
+                    <option value="0">Tepat waktu</option>
+                    <option value="5">5 menit sebelumnya</option>
+                    <option value="10">10 menit sebelumnya</option>
+                    <option value="15">15 menit sebelumnya</option>
+                  </select>
+                </label>
+                <div class="settings-actions">
+                  <button
+                    class="ghost-button"
+                    id="settingsEnableNotif"
+                    type="button"
+                  >
+                    Aktifkan notifikasi
+                  </button>
+                  <button
+                    class="ghost-button"
+                    id="settingsTestNotif"
+                    type="button"
+                  >
+                    Kirim uji coba
+                  </button>
+                </div>
+              </article>
+
+              <article class="panel-card settings-card">
+                <div class="settings-card-head"><h2>Tampilan bacaan</h2></div>
+                <label class="auth-field">
+                  Ukuran teks bacaan
+                  <select id="settingsReadingScale">
+                    <option value="normal">Normal</option>
+                    <option value="large">Besar (mode majelis)</option>
+                  </select>
+                </label>
+                <p class="muted">
+                  Berlaku untuk Tahlil, Manaqib, Ratib, Dzikir, dan teks ayat
+                  Al-Qur'an.
+                </p>
+              </article>
+
+              <article class="panel-card settings-card">
+                <div class="settings-card-head">
+                  <h2>Metode waktu shalat</h2>
+                </div>
+                <label class="auth-field">
+                  Mazhab Ashar
+                  <select id="settingsAsrSchool">
+                    <option value="standard">
+                      Standar (Syafi'i, Maliki, Hanbali)
+                    </option>
+                    <option value="hanafi">Hanafi</option>
+                  </select>
+                </label>
+                <p class="muted">
+                  Waktu shalat memakai metode Kementerian Agama RI, lalu
+                  disesuaikan dengan mazhab Ashar pilihanmu.
+                </p>
+              </article>
+
+              <article class="panel-card settings-card">
+                <div class="settings-card-head"><h2>Data perangkat</h2></div>
+                <p class="muted">
+                  Menghapus progres shalat, hitungan dzikir, riwayat bacaan, dan
+                  cache surat di perangkat ini. Preferensi dan lokasi tidak ikut
+                  terhapus.
+                </p>
+                <div class="settings-actions">
+                  <button
+                    class="ghost-button"
+                    id="settingsResetLocal"
+                    type="button"
+                  >
+                    Reset progres lokal
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div
+      class="notif-overlay is-hidden"
+      id="notificationOverlay"
+      role="presentation"
+    >
+      <section
+        class="auth-dialog notif-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="notificationTitle"
+      >
+        <button class="auth-close" id="notificationClose" aria-label="Tutup">
+          ×
+        </button>
+        <p class="eyebrow">PENGINGAT IBADAH</p>
+        <h2 id="notificationTitle">Pengaturan notifikasi</h2>
+        <p class="auth-copy">
+          Atur izin dan jenis pengingat yang ingin kamu terima dari Islamku.id.
+        </p>
+
+        <div class="notif-status" id="notificationStatus" data-state="default">
+          <span class="notif-status-dot" aria-hidden="true"></span>
+          <div>
+            <strong id="notificationStatusLabel">Belum diizinkan</strong>
+            <small id="notificationStatusHint"
+              >Izinkan notifikasi agar pengingat dapat dikirim.</small
+            >
+          </div>
+        </div>
+
+        <div class="notif-prefs">
+          <label class="notif-toggle">
+            <input type="checkbox" id="notifPrefPrayer" />
+            <span>
+              <strong>Pengingat waktu shalat</strong>
+              <small>Dikirim setiap masuk waktu shalat hari ini.</small>
+            </span>
+          </label>
+          <label class="notif-toggle">
+            <input type="checkbox" id="notifPrefDzikir" />
+            <span>
+              <strong>Dzikir pagi &amp; petang</strong>
+              <small>Pengingat setelah Subuh dan setelah Ashar.</small>
+            </span>
+          </label>
+          <label class="notif-toggle">
+            <input type="checkbox" id="notifPrefArtikel" />
+            <span>
+              <strong>Artikel islami pilihan</strong>
+              <small>Anjuran bacaan setiap pukul 08.00.</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="notif-picks">
+          <p class="notif-picks-label">Waktu shalat yang diingatkan</p>
+          <div class="prayer-picks" id="notifPrayerTimes"></div>
+        </div>
+        <p class="settings-reminder" id="notifNextReminder">
+          Pengingat berikutnya: —
+        </p>
+        <label class="auth-field">
+          Ingatkan sebelum waktu shalat
+          <select id="notifLeadMinutes">
+            <option value="0">Tepat waktu</option>
+            <option value="5">5 menit sebelumnya</option>
+            <option value="10">10 menit sebelumnya</option>
+            <option value="15">15 menit sebelumnya</option>
+          </select>
+        </label>
+
+        <label class="auth-field">
+          Pengingat jamaah setelah adzan
+          <select id="notifIqamah">
+            <option value="0">Nonaktif</option>
+            <option value="5">5 menit setelah adzan</option>
+            <option value="10">10 menit setelah adzan</option>
+            <option value="15">15 menit setelah adzan</option>
+          </select>
+        </label>
+
+        <p class="auth-error" id="notificationError" role="alert"></p>
+        <button class="primary-button" id="notificationPrimary" type="button">
+          Aktifkan notifikasi
+        </button>
+        <button class="auth-switch" id="notificationTest" type="button">
+          Kirim notifikasi uji coba
+        </button>
+        <small class="auth-note">
+          Pengingat berjalan selama aplikasi terbuka dan izin notifikasi
+          diberikan pada browser.
+        </small>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="auth-overlay is-hidden" id="authOverlay" role="presentation">
+      <section
+        class="auth-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="authTitle"
+      >
+        <button class="auth-close" id="authClose" aria-label="Tutup">×</button>
+        <p class="eyebrow">RUANG IBADAH PRIBADI</p>
+        <h2 id="authTitle">Masuk ke akunmu</h2>
+        <p class="auth-copy" id="authCopy">
+          Simpan posisi terakhir membaca Al-Qur'an di perangkat ini.
+        </p>
+        <form id="authForm">
+          <label class="auth-field is-hidden" id="authNameField"
+            >Nama
+            <input
+              id="authName"
+              type="text"
+              autocomplete="name"
+              placeholder="Nama panggilan"
+            />
+          </label>
+          <label class="auth-field"
+            >Email
+            <input
+              id="authEmail"
+              type="email"
+              autocomplete="email"
+              placeholder="nama@email.com"
+              required
+            />
+          </label>
+          <label class="auth-field"
+            >Kata sandi
+            <span class="password-input-wrap">
+              <input
+                id="authPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Minimal 6 karakter"
+                minlength="6"
+                required
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                id="togglePassword"
+                aria-label="Lihat kata sandi"
+              >
+                Lihat
+              </button>
+            </span>
+          </label>
+          <p class="auth-error" id="authError" role="alert"></p>
+          <button class="primary-button" type="submit" id="authSubmit">
+            Masuk
+          </button>
+        </form>
+        <button class="auth-switch" id="authSwitch" type="button">
+          Belum punya akun? Daftar
+        </button>
+        <small class="auth-note"
+          >Akun dan progres bacaan disimpan oleh server aplikasi.</small
+        >
+      </section>
+    </div>
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+      <div class="search-inner">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Cari fitur atau artikel: ilmu, istighfar, sholat…"
+        /><button id="closeSearch" aria-label="Tutup pencarian">×</button>
+        <ul
+          class="city-results"
+          id="searchResults"
+          style="
+            position: static;
+            box-shadow: none;
+            border: 0;
+            padding: 0;
+            margin-top: 10px;
+          "
+        ></ul>
+      </div>
+    </div>
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
