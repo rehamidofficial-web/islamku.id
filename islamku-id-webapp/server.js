@@ -27,6 +27,8 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
   // Di Vercel (serverless) tiap instance cukup 1 koneksi agar Neon tidak kewalahan.
   max: process.env.VERCEL ? 1 : 10,
+  // Gagal cepat (8 detik) supaya error tampil jelas, bukan menggantung lama.
+  connectionTimeoutMillis: 8000,
 });
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -332,6 +334,40 @@ function requireUser(req, res, store) {
 }
 
 async function handleApi(req, res, url) {
+  // Cek kesehatan: buka /api/health di browser untuk melihat status database.
+  // Tidak menampilkan rahasia apa pun (hanya kode error dan ya/tidak).
+  if (req.method === "GET" && url.pathname === "/api/health") {
+    const started = Date.now();
+    const info = {
+      databaseUrlTerisi: Boolean(process.env.DATABASE_URL),
+      databaseUrlBentukBenar: /^postgres(ql)?:\/\//.test(
+        process.env.DATABASE_URL || "",
+      ),
+      sessionSecretTerisi: Boolean(process.env.SESSION_SECRET),
+    };
+    if (IS_TEST) return sendJson(res, 200, { ok: true, mode: "test", ...info });
+    try {
+      await pool.query("SELECT 1 FROM app_store WHERE id = 1");
+      return sendJson(res, 200, {
+        ok: true,
+        database: "terhubung",
+        ms: Date.now() - started,
+        ...info,
+      });
+    } catch (error) {
+      console.error("Cek kesehatan database gagal:", error);
+      return sendJson(res, 503, {
+        ok: false,
+        database: "gagal",
+        kodeError: error.code || null,
+        jenisError: error.name || null,
+        waktuHabis: /timeout/i.test(String(error.message || "")),
+        ms: Date.now() - started,
+        ...info,
+      });
+    }
+  }
+
   const store = await readStore();
   if (req.method === "POST" && url.pathname === "/api/contact") {
     const user = requireUser(req, res, store);
