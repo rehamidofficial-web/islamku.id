@@ -606,13 +606,18 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-// Vercel mendeteksi server dari server.listen() saat modul dimuat dan
-// mewajibkan export default berupa fungsi atau server (bukan objek biasa).
-if (require.main === module || process.env.VERCEL) {
+// Dijalankan langsung (npm start / node server.js): buka port seperti biasa.
+if (require.main === module) {
   server.listen(PORT, "0.0.0.0", () => {
     console.log(`Islamku.id berjalan di http://localhost:${PORT}`);
   });
 }
 
-module.exports = server;
+// Di Vercel: export default berupa FUNGSI (req, res). Vercel memanggilnya
+// tiap ada permintaan, jadi server tidak boleh memanggil listen() sendiri.
+function handler(req, res) {
+  return server.emit("request", req, res);
+}
+
+module.exports = handler;
 module.exports.server = server; // kompatibel dengan tes: require("./server").server
