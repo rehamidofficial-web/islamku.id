@@ -1,5 +1,5 @@
 /* ==========================================================================
-   app.js — Islamku.id
+   islamku-app.js — Islamku.id
    Vanilla JS, tanpa framework/build tool. Dipecah per bagian dengan komentar
    supaya mudah ditelusuri:
    1) Util & Toast              5) Kompas Kiblat

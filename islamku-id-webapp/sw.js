@@ -1,4 +1,4 @@
-const CACHE_NAME = "islamku-shell-v7";
+const CACHE_NAME = "islamku-shell-v8";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,7 +6,7 @@ const APP_SHELL = [
   "./tema-zamrud.css",
   "./theme.js",
   "./content.js",
-  "./app.js",
+  "./islamku-app.js",
   "./manifest.json",
   "./icons/icon-192.svg",
   "./icons/icon-512.svg",

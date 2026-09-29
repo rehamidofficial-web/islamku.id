@@ -25,6 +25,8 @@ loadEnvFile();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
+  // Di Vercel (serverless) tiap instance cukup 1 koneksi agar Neon tidak kewalahan.
+  max: process.env.VERCEL ? 1 : 10,
 });
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -33,7 +35,47 @@ const DATA_DIR = process.env.DATA_DIR || path.join(ROOT, "data");
 const STORE_FILE = path.join(DATA_DIR, "store.json");
 const CONTACT_RECEIVER_EMAIL =
   process.env.CONTACT_RECEIVER_EMAIL || "rehamidofficial@gmail.com";
-const sessions = new Map();
+
+// Sesi memakai token bertanda tangan (stateless) agar tetap valid di hosting
+// serverless seperti Vercel, di mana memori server tidak dibagi antar-permintaan.
+// Disarankan mengisi SESSION_SECRET (string acak panjang) di environment.
+const SESSION_SECRET =
+  process.env.SESSION_SECRET ||
+  crypto
+    .createHash("sha256")
+    .update("islamku-session:" + (process.env.DATABASE_URL || "dev"))
+    .digest("hex");
+const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+
+function signSession(userId) {
+  const payload = Buffer.from(
+    JSON.stringify({ u: userId, e: Date.now() + SESSION_TTL_MS }),
+  ).toString("base64url");
+  const sig = crypto
+    .createHmac("sha256", SESSION_SECRET)
+    .update(payload)
+    .digest("base64url");
+  return `${payload}.${sig}`;
+}
+
+function verifySession(token) {
+  const [payload, sig] = String(token || "").split(".");
+  if (!payload || !sig) return null;
+  const expected = crypto
+    .createHmac("sha256", SESSION_SECRET)
+    .update(payload)
+    .digest("base64url");
+  const a = Buffer.from(sig);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return null;
+  try {
+    const data = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
+    if (!data.u || !data.e || Date.now() > data.e) return null;
+    return data.u;
+  } catch {
+    return null;
+  }
+}
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
@@ -155,7 +197,7 @@ function publicUser(user) {
   return { id: user.id, name: user.name, email: user.email };
 }
 
-/* Preferensi pengguna: nilai default sama dengan app.js supaya pembaruan
+/* Preferensi pengguna: nilai default sama dengan islamku-app.js supaya pembaruan
    parsial dari klien tetap menghasilkan objek yang lengkap. */
 const DEFAULT_PREFERENCES = {
   notification: {
@@ -279,7 +321,7 @@ function mergePreferences(current, patch) {
 
 function getUserFromRequest(req, store) {
   const token = (req.headers.authorization || "").slice(7);
-  const userId = sessions.get(token);
+  const userId = verifySession(token);
   return userId ? store.users.find((user) => user.id === userId) : null;
 }
 
@@ -354,8 +396,7 @@ async function handleApi(req, res, url) {
     };
     store.users.push(user);
     await writeStore(store);
-    const token = crypto.randomBytes(32).toString("hex");
-    sessions.set(token, user.id);
+    const token = signSession(user.id);
     return sendJson(res, 201, {
       user: publicUser(user),
       token,
@@ -370,8 +411,7 @@ async function handleApi(req, res, url) {
     const user = store.users.find((candidate) => candidate.email === email);
     if (!user || !verifyPassword(password, user))
       return sendError(res, 401, "Email atau kata sandi tidak cocok.");
-    const token = crypto.randomBytes(32).toString("hex");
-    sessions.set(token, user.id);
+    const token = signSession(user.id);
     return sendJson(res, 200, {
       user: publicUser(user),
       token,
@@ -389,8 +429,7 @@ async function handleApi(req, res, url) {
     });
   }
   if (req.method === "POST" && url.pathname === "/api/auth/logout") {
-    const token = (req.headers.authorization || "").slice(7);
-    sessions.delete(token);
+    // Token stateless: logout cukup menghapus token di sisi klien.
     return sendJson(res, 200, { ok: true });
   }
   if (req.method === "GET" && url.pathname === "/api/bookmark") {
@@ -474,12 +513,30 @@ async function deliverContactEmail(contact) {
   }
 }
 
+const BLOCKED_TOP = new Set(["node_modules", "data", "test", "api"]);
+const BLOCKED_FILES = new Set([
+  "server.js",
+  "package.json",
+  "package-lock.json",
+  "fix_bookmark_issue.sql",
+]);
+
+function isBlockedPath(filePath) {
+  const relative = path.relative(ROOT, filePath).split(path.sep);
+  return (
+    relative.some((part) => part.startsWith(".")) ||
+    BLOCKED_TOP.has(relative[0]) ||
+    BLOCKED_FILES.has(relative[relative.length - 1].toLowerCase())
+  );
+}
+
 function serveStatic(req, res, url) {
   let requested = decodeURIComponent(url.pathname);
   if (requested === "/" || requested === "") requested = "/index.html";
   const filePath = path.resolve(ROOT, `.${requested}`);
   if (
     !filePath.startsWith(`${ROOT}${path.sep}`) ||
+    isBlockedPath(filePath) ||
     !fs.existsSync(filePath) ||
     fs.statSync(filePath).isDirectory()
   ) {
@@ -513,10 +570,13 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-if (require.main === module) {
+// Vercel mendeteksi server dari server.listen() saat modul dimuat dan
+// mewajibkan export default berupa fungsi atau server (bukan objek biasa).
+if (require.main === module || process.env.VERCEL) {
   server.listen(PORT, "0.0.0.0", () => {
     console.log(`Islamku.id berjalan di http://localhost:${PORT}`);
   });
 }
 
-module.exports = { server };
+module.exports = server;
+module.exports.server = server; // kompatibel dengan tes: require("./server").server
